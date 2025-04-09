@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Pacifico&display=swap');
+
+:root {
+    --pink: #ff9ff3;
+    --hotpink: #ff6b9d;
+    --lightpink: #ffd6e7;
+    --darkpink: #e84393;
+    --purple: #cd84f1;
+    --white: #fff9fd;
+    --gold: #feca57;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--white);
+    color: #333;
+    line-height: 1.6;
+    background-image: url('https://img.freepik.com/free-vector/hand-drawn-pink-heart-pattern_23-2149014857.jpg');
+    background-size: 30%;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 30px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: var(--darkpink);
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: "✨";
+    position: absolute;
+    top: -15px;
+    right: -25px;
+    font-size: 1.5rem;
+    animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+    0% { opacity: 0.5; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.subtitle {
+    font-family: 'Pacifico', cursive;
+    color: var(--hotpink);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.divider {
+    height: 3px;
+    background: linear-gradient(90deg, var(--pink), var(--purple), var(--pink));
+    margin: 20px 0;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.divider::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.section {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 105, 157, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+}
+
+h2 {
+    color: var(--darkpink);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+h2::before {
+    content: "❤";
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+h3 {
+    color: var(--hotpink);
+    font-size: 1.4rem;
+    margin: 20px 0 10px;
+    font-weight: 500;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+li {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+li::before {
+    content: "🌸";
+    position: absolute;
+    left: -25px;
+}
+
+.quote {
+    font-style: italic;
+    background-color: var(--lightpink);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border-left: 4px solid var(--hotpink);
+    position: relative;
+}
+
+.quote::before {
+    content: "\""; /* Fixed quote mark */
+    font-size: 3rem;
+    color: var(--hotpink);
+    opacity: 0.2;
+    position: absolute;
+    top: -15px;
+    left: 5px;
+    font-family: serif;
+}
+
+.mcq {
+    background-color: rgba(255, 214, 231, 0.3);
+    border: 1px dashed var(--hotpink);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.question {
+    font-weight: 600;
+    color: var(--darkpink);
+    margin-bottom: 10px;
+}
+
+.option {
+    margin-bottom: 5px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.option::before {
+    content: "✧";
+    position: absolute;
+    left: 5px;
+    color: var(--purple);
+}
+
+.answer {
+    background-color: rgba(205, 132, 241, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: 600;
+    color: var(--darkpink);
+    display: none;
+}
+
+.show-answer {
+    background: linear-gradient(45deg, var(--pink), var(--purple));
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 3px 10px rgba(255, 105, 157, 0.3);
+}
+
+.show-answer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 105, 157, 0.4);
+}
+
+.glitter {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+    color: var(--hotpink);
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .section {
+        padding: 20px 15px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Decorative elements */
+.heart {
+    position: absolute;
+    font-size: 1.2rem;
+    color: var(--hotpink);
+    animation: float 4s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+.star {
+    position: absolute;
+    font-size: 1rem;
+    color: var(--gold);
+    animation: twinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.3; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1.1); }
+}
+
+.section:nth-child(odd)::after {
+    content: "❀";
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: var(--pink);
+    opacity: 0.3;
+}
+
+.section:nth-child(even)::after {
+    content: "✿";
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: var(--purple);
+    opacity: 0.3;
+}
+
+/* shine shine css */
+.shine-effect {
+    position: fixed;
+    background: radial-gradient(circle, 
+        rgba(255,255,255,0.8) 0%, 
+        rgba(255,182,193,0.6) 50%,  /* Matches your pink */
+        rgba(255,255,255,0) 70%);
+    border-radius: 25px; /* Matches nav button shape */
+    pointer-events: none;
+    z-index: 100;
+    animation: shine-pulse 0.5s ease-out;
+}
+
+@keyframes shine-pulse {
+    0% { transform: scale(0.8); opacity: 0.6; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* ===== Glittery Pink Navigation ===== */
+.main-nav {
+    background: linear-gradient(135deg, #ffb6c1 0%, #ff8fab 100%);
+    padding: 18px 0;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glitter overlay */
+.main-nav::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="none" width="100" height="100"/><path fill="rgba(255,255,255,0.3)" d="M30,10L40,20L20,40L10,30Z" transform="rotate(45 50 50)"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.main-nav a {
+    color: #5e0b5e;
+    text-decoration: none;
+    padding: 12px 25px;
+    margin: 0 8px;
+    border-radius: 25px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: 700; /* Bold text */
+    font-size: 1.1em;
+    background-color: rgba(255, 255, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    text-shadow: 0 1px 2px rgba(255,255,255,0.3);
+}
+
+.main-nav a:hover {
+    background-color: #ff69b4;
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Glimmer effect on hover */
+.main-nav a:hover::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255,255,255,0) 45%,
+        rgba(255,255,255,0.8) 50%,
+        rgba(255,255,255,0) 55%
+    );
+    transform: rotate(30deg);
+    animation: glimmer 1.5s infinite;
+}
+
+@keyframes glimmer {
+    0% { transform: translateX(-100%) rotate(30deg); }
+    100% { transform: translateX(100%) rotate(30deg); }
+}
+
+/* Current page style */
+.main-nav .current-page {
+    background-color: #d23d7d !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(210, 61, 125, 0.5);
+    font-weight: 800;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .main-nav a {
+        display: block;
+        margin: 10px auto;
+        width: 85%;
+        padding: 14px;
+    }
+}
