@@ -165,4 +165,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+    // Auto-highlight current page link
+function highlightCurrentPage() {
+    const navLinks = document.querySelectorAll('.main-nav a');
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    navLinks.forEach(link => {
+        link.classList.remove('current-page');
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('current-page');
+        }
+    });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', highlightCurrentPage);
 }
