@@ -479,62 +479,61 @@ footer {
 }
 /* ===== 🩷 PINK PRINCESS UPGRADES 🩷 ===== */
 
-/* 1. Swirly Header Border */
-header {
-    position: relative;
-    padding-bottom: 25px !important; /* Adds space for the swirl */
-}
+    /* 2. Glitter Cursor (works everywhere) */
+    html {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text x="5" y="18" font-size="16" fill="%23ff69b4">✨</text></svg>'), auto;
+    }
 
-header::after {
-    content: "";
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 20" fill="%23ff9ff3"><path d="M0,10 C30,25 60,5 90,15 C100,18 110,12 120,10" /></svg>') repeat-x;
-    height: 20px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    opacity: 0.7;
-}
+    /* 3. Removed section divider completely */
 
-/* 2. Glitter Cursor (works everywhere) */
-html {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text x="5" y="18" font-size="16" fill="%23ff69b4">✨</text></svg>'), auto;
-}
+    /* 4. Heart Bullets */
+    ul li::before, ol li::before {
+        content: "♥" !important;
+        color: #ff6b9d !important;
+        margin-right: 10px;
+    }
 
-/* 3. Section Dividers (replaces existing ::before) */
-.section::before {
-    content: "♡ ♡ ♡";
-    color: #ff6b9d;
-    display: block;
-    text-align: center;
-    font-size: 1.5rem;
-    letter-spacing: 15px;
-    margin: -10px 0 20px;
-}
+    /* 5. Blushing Buttons */
+    button, .show-answer {
+        background: linear-gradient(45deg, #ff9ff3, #ff6b9d) !important;
+        border: 2px solid white !important;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
 
-/* 4. Heart Bullets */
-ul li::before, ol li::before {
-    content: "♥" !important; /* Overrides existing bullets */
-    color: #ff6b9d !important;
-    margin-right: 10px;
-}
+    button:hover, .show-answer:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(255, 107, 157, 0.3);
+    }
 
-/* 5. Blushing Buttons */
-button, .show-answer {
-    background: linear-gradient(45deg, #ff9ff3, #ff6b9d) !important;
-    border: 2px solid white !important;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
-}
+    /* 6. Tiara Title */
+    h1::after {
+        content: "👑";
+        margin-left: 15px;
+        vertical-align: middle;
+        animation: bounce 2s infinite;
+    }
 
-/* 6. Tiara Title */
-h1::after {
-    content: "👑";
-    margin-left: 15px;
-    vertical-align: middle;
-    animation: bounce 2s infinite;
-}
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
 
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
+    /* Added cute answer reveal animation */
+    .answer {
+        transition: all 0.3s ease-out;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .answer.show {
+        opacity: 1;
+        max-height: 200px;
+    }
+
+    /* Sparkle effect on options hover */
+    .options p:hover {
+        background: linear-gradient(45deg, #fff9f9, #ffe6f1) !important;
+        transform: translateX(5px);
+    }
