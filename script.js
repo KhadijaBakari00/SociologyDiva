@@ -395,23 +395,50 @@ function createNavLink(page, type) {
 function setupScrollBehavior() {
     let lastScroll = 0;
     let ticking = false;
+    const bottomNav = document.querySelector('.bottom-nav');
+    
+    // Hide initially
+    bottomNav.classList.add('hidden');
+    
+    // Show when near bottom (last 25% of page)
+    function checkScroll() {
+        const scrollPosition = window.scrollY;
+        const pageHeight = document.body.scrollHeight;
+        const windowHeight = window.innerHeight;
+        const scrollThreshold = pageHeight * 0.75; // Show when past 75% of page
+        
+        if (scrollPosition + windowHeight > scrollThreshold) {
+            bottomNav.classList.remove('hidden');
+        } else {
+            bottomNav.classList.add('hidden');
+        }
+    }
+    
+    // Show temporarily when clicking next/prev
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('quick-link')) {
+            bottomNav.classList.remove('hidden');
+            setTimeout(() => {
+                if (window.scrollY + window.innerHeight < document.body.scrollHeight * 0.75) {
+                    bottomNav.classList.add('hidden');
+                }
+            }, 3000); // Hide after 3 seconds if not near bottom
+        }
+    });
     
     window.addEventListener('scroll', () => {
-        lastScroll = window.scrollY;
-        
         if (!ticking) {
             window.requestAnimationFrame(() => {
-                const bottomNav = document.querySelector('.bottom-nav');
-                if (bottomNav) {
-                    const shouldHide = lastScroll > 100 && lastScroll > window.lastScrollPosition;
-                    bottomNav.classList.toggle('hidden', shouldHide);
-                }
-                window.lastScrollPosition = lastScroll;
+                checkScroll();
                 ticking = false;
             });
             ticking = true;
         }
-    }, { passive: true });
+    });
+    
+    // Initial check
+    checkScroll();
+    
     // Rainbow hover effect for headers
 document.querySelectorAll('h1, h2, h3').forEach(heading => {
     heading.addEventListener('mouseenter', () => {
