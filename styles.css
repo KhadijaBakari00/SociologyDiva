@@ -561,6 +561,16 @@ html {
     }
 }
 
+@media (max-width: 768px) {
+    .main-nav {
+        padding: 12px 5px;
+    }
+    .main-nav a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        margin: 0 3px;
+    }
+}
 /* ===== SECTION DECORATIONS ===== */
 .section:nth-child(odd)::after {
     content: "❀";
