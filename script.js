@@ -182,8 +182,19 @@ function initNavigation() {
 function highlightCurrentPage() {
     const currentPage = location.pathname.split('/').pop();
     document.querySelectorAll('.main-nav a').forEach(link => {
+        // Remove all current classes first
+        link.classList.remove('current-page');
+        
+        // Remove any existing crowns
+        const existingCrown = link.querySelector('.nav-crown');
+        if (existingCrown) {
+            existingCrown.remove();
+        }
+        
+        // Check if this is the current page
         if (link.getAttribute('href') === currentPage) {
             link.classList.add('current-page');
+            
             // Add crown to current page link
             const crown = document.createElement('span');
             crown.className = 'nav-crown';
