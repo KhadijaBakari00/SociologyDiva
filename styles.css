@@ -433,6 +433,27 @@ li::before {
     z-index: 100;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+/* Bottom nav transitions */
+.bottom-nav {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bottom-nav.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    pointer-events: none;
+}
+
+/* Make it appear when near links */
+.quick-links-wrapper {
+    transition: all 0.3s ease;
+}
+
+.bottom-nav:hover .quick-links-wrapper,
+.bottom-nav:focus-within .quick-links-wrapper {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+}
 
 .quick-links-wrapper {
     position: relative;
@@ -576,6 +597,16 @@ html {
     .nav-crown {
         font-size: 0.8rem;
         margin-right: 4px;
+    }
+}
+
+@media (max-width: 768px) {
+    .bottom-nav {
+        width: calc(100% - 20px);
+        bottom: 10px;
+    }
+    .quick-links {
+        padding: 10px 15px;
     }
 }
 /* ===== SECTION DECORATIONS ===== */
