@@ -477,3 +477,64 @@ footer {
     0%, 100% { transform: rotate(-5deg); }
     50% { transform: rotate(5deg); }
 }
+/* ===== 🩷 PINK PRINCESS UPGRADES 🩷 ===== */
+
+/* 1. Swirly Header Border */
+header {
+    position: relative;
+    padding-bottom: 25px !important; /* Adds space for the swirl */
+}
+
+header::after {
+    content: "";
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 20" fill="%23ff9ff3"><path d="M0,10 C30,25 60,5 90,15 C100,18 110,12 120,10" /></svg>') repeat-x;
+    height: 20px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0.7;
+}
+
+/* 2. Glitter Cursor (works everywhere) */
+html {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text x="5" y="18" font-size="16" fill="%23ff69b4">✨</text></svg>'), auto;
+}
+
+/* 3. Section Dividers (replaces existing ::before) */
+.section::before {
+    content: "♡ ♡ ♡";
+    color: #ff6b9d;
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    letter-spacing: 15px;
+    margin: -10px 0 20px;
+}
+
+/* 4. Heart Bullets */
+ul li::before, ol li::before {
+    content: "♥" !important; /* Overrides existing bullets */
+    color: #ff6b9d !important;
+    margin-right: 10px;
+}
+
+/* 5. Blushing Buttons */
+button, .show-answer {
+    background: linear-gradient(45deg, #ff9ff3, #ff6b9d) !important;
+    border: 2px solid white !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+}
+
+/* 6. Tiara Title */
+h1::after {
+    content: "👑";
+    margin-left: 15px;
+    vertical-align: middle;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
