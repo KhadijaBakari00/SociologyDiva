@@ -338,17 +338,17 @@ function updateBottomLinks() {
     
     linksDiv.innerHTML = '';
     
-    // Previous link
-    if (currentIndex > 0) {
-        const prevLink = createNavLink(pages[currentIndex - 1], 'prev');
-        linksDiv.appendChild(prevLink);
-    }
-    
-    // Home link (center)
+    // Always show home link in center
     const homeLink = createNavLink(pages[0], 'home');
     linksDiv.appendChild(homeLink);
     
-    // Next link
+    // Show previous link if not on first page
+    if (currentIndex > 0) {
+        const prevLink = createNavLink(pages[currentIndex - 1], 'prev');
+        linksDiv.insertBefore(prevLink, homeLink);
+    }
+    
+    // Show next link if not on last page
     if (currentIndex < pages.length - 1 && currentIndex >= 0) {
         const nextLink = createNavLink(pages[currentIndex + 1], 'next');
         linksDiv.appendChild(nextLink);
