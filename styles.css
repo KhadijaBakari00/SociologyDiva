@@ -363,60 +363,45 @@ li::before {
 
 /* ===== NAVIGATION STYLES ===== */
 .main-nav {
-    background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 100%);
+    background: linear-gradient(135deg, #ff9ff3 0%, #ff6b9d 100%);
     padding: 15px 10px;
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0 4px 20px rgba(255, 182, 193, 0.5);
-    position: relative;
-    overflow: hidden;
-    border-bottom: 3px solid #ff9ff3;
+    text-align: center; /* This centers the links */
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
+    border: none; /* Remove any borders */
 }
 
-.main-nav::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.8), 
-        transparent);
-    animation: nav-shine 3s infinite;
+.main-nav::-webkit-scrollbar {
+    display: none;
 }
 
 .main-nav a {
-    color: #d23d7d;
+    color: white;
     text-decoration: none;
     padding: 10px 18px;
     margin: 0 5px;
     border-radius: 25px;
     font-weight: 600;
     font-size: 1rem;
-    display: inline-flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.7);
-    border: 2px solid white;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(210, 61, 125, 0.1);
 }
 
 .main-nav a:hover {
-    background: rgba(255, 255, 255, 0.9);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
-    color: #e84393;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
 }
 
 .main-nav a.current-page {
-    background: #ff9ff3;
-    color: white;
+    background: rgba(255, 255, 255, 0.7);
+    color: #e84393;
     font-weight: 700;
-    box-shadow: 0 4px 12px rgba(255, 159, 243, 0.4);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(210, 61, 125, 0.4);
 }
 
 .nav-crown {
