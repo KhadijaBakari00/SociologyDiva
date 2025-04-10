@@ -129,47 +129,110 @@ function initNavigation() {
     document.querySelectorAll('.main-nav a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            createDelicateRipple(e.target);
+            createShineEffect(e.target);
             setTimeout(() => {
                 window.location.href = e.target.href;
-            }, 400);
+            }, 500);
         });
     });
 }
 
-function createDelicateRipple(element) {
-    const ripple = document.createElement('div');
-    ripple.className = 'nav-ripple';
+function highlightCurrentPage() {
+    const currentPage = location.pathname.split('/').pop();
+    document.querySelectorAll('.main-nav a').forEach(link => {
+        link.classList.toggle('current-page', link.getAttribute('href') === currentPage);
+    });
+}
+
+function createShineEffect(element) {
+    const shine = document.createElement('div');
+    shine.className = 'shine-effect';
     const rect = element.getBoundingClientRect();
     
-    ripple.style.cssText = `
+    shine.style.cssText = `
         width: ${rect.width}px;
         height: ${rect.height}px;
         left: ${rect.left}px;
         top: ${rect.top}px;
-        border-radius: ${parseInt(window.getComputedStyle(element).borderRadius)}px;
     `;
     
-    document.body.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 600);
+    document.body.appendChild(shine);
+    setTimeout(() => shine.remove(), 500);
 }
 
 /* ===== BOTTOM NAVIGATION ===== */
 function initBottomNav() {
     createBottomNav();
     setupScrollBehavior();
-    addBottomNavHoverEffects();
 }
 
-function addBottomNavHoverEffects() {
-    document.querySelectorAll('.quick-link').forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            createGlitter(
-                link.getBoundingClientRect().left + link.offsetWidth/2,
-                link.getBoundingClientRect().top + link.offsetHeight/2
-            );
-        });
-    });
+function createBottomNav() {
+    if (!document.querySelector('.bottom-nav')) {
+        const nav = document.createElement('div');
+        nav.className = 'bottom-nav';
+        nav.innerHTML = '<div class="quick-links"></div>';
+        document.body.appendChild(nav);
+    }
+    updateBottomLinks();
+}
+
+function updateBottomLinks() {
+    const pages = [
+        { url: 'index.html', name: 'Home' },
+        { url: 'socialization.html', name: 'Socialization' },
+        { url: 'culture.html', name: 'Culture' },
+        { url: 'research-methods.html', name: 'Research Methods' }
+    ];
+    
+    const currentPage = location.pathname.split('/').pop();
+    const currentIndex = pages.findIndex(page => page.url === currentPage);
+    const linksDiv = document.querySelector('.quick-links');
+    
+    if (!linksDiv) return;
+    
+    linksDiv.innerHTML = '';
+    
+    // Previous link
+    if (currentIndex > 0) {
+        const prevLink = createNavLink(pages[currentIndex - 1], 'prev');
+        linksDiv.appendChild(prevLink);
+    }
+    
+    // Next link
+    if (currentIndex < pages.length - 1) {
+        const nextLink = createNavLink(pages[currentIndex + 1], 'next');
+        linksDiv.appendChild(nextLink);
+    }
+}
+
+function createNavLink(page, type) {
+    const link = document.createElement('a');
+    link.href = page.url;
+    link.className = `quick-link ${type}`;
+    link.textContent = type === 'prev' ? `← ${page.name}` : `${page.name} →`;
+    return link;
+}
+
+function setupScrollBehavior() {
+    let lastScroll = 0;
+    let ticking = false;
+    
+    window.addEventListener('scroll', () => {
+        lastScroll = window.scrollY;
+        
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const bottomNav = document.querySelector('.bottom-nav');
+                if (bottomNav) {
+                    const shouldHide = lastScroll > 100 && lastScroll > window.lastScrollPosition;
+                    bottomNav.classList.toggle('hidden', shouldHide);
+                }
+                window.lastScrollPosition = lastScroll;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
     // Rainbow hover effect for headers
 document.querySelectorAll('h1, h2, h3').forEach(heading => {
     heading.addEventListener('mouseenter', () => {
