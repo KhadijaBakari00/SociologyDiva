@@ -160,17 +160,163 @@ function createShineEffect(element) {
     setTimeout(() => shine.remove(), 500);
 }
 
+/* ===== PRINCESS-NAVIGATION ===== */
+function initNavigation() {
+    highlightCurrentPage();
+    
+    document.querySelectorAll('.main-nav a').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            createSparkleTrail(link);
+        });
+        
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            createPrincessEffect(e.target);
+            setTimeout(() => {
+                window.location.href = e.target.href;
+            }, 800);
+        });
+    });
+}
+
+function highlightCurrentPage() {
+    const currentPage = location.pathname.split('/').pop();
+    document.querySelectorAll('.main-nav a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('current-page');
+            // Add crown to current page link
+            const crown = document.createElement('span');
+            crown.className = 'nav-crown';
+            crown.innerHTML = '👑';
+            link.prepend(crown);
+            
+            // Add sparkle effect to current page
+            setInterval(() => {
+                createNavSparkle(link);
+            }, 1500);
+        }
+    });
+}
+
+function createPrincessEffect(element) {
+    // Create magical dust
+    for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+            createNavSparkle(element, true);
+        }, i * 50);
+    }
+    
+    // Create tiara animation
+    const tiara = document.createElement('div');
+    tiara.className = 'tiara-effect';
+    const rect = element.getBoundingClientRect();
+    
+    tiara.style.cssText = `
+        left: ${rect.left + rect.width/2 - 15}px;
+        top: ${rect.top - 30}px;
+    `;
+    
+    document.body.appendChild(tiara);
+    setTimeout(() => tiara.remove(), 800);
+}
+
+function createSparkleTrail(element) {
+    let counter = 0;
+    const interval = setInterval(() => {
+        if (counter++ > 5) {
+            clearInterval(interval);
+            return;
+        }
+        createNavSparkle(element);
+    }, 100);
+}
+
+function createNavSparkle(element, isClick = false) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'nav-sparkle';
+    
+    const shapes = ['✦', '✧', '❀', '♥', '♡', '✨'];
+    sparkle.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+    
+    const rect = element.getBoundingClientRect();
+    const x = rect.left + Math.random() * rect.width;
+    const y = rect.top + Math.random() * rect.height;
+    
+    sparkle.style.cssText = `
+        left: ${x}px;
+        top: ${y}px;
+        color: ${isClick ? '#ff9ff3' : '#feca57'};
+        font-size: ${Math.random() * 10 + 10}px;
+        animation-duration: ${Math.random() * 1 + 0.5}s;
+        z-index: 1000;
+    `;
+    
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+}
+
 /* ===== BOTTOM NAVIGATION ===== */
 function initBottomNav() {
     createBottomNav();
     setupScrollBehavior();
+    setupBottomNavEffects();
+}
+
+function setupBottomNavEffects() {
+    const bottomNav = document.querySelector('.bottom-nav');
+    if (!bottomNav) return;
+    
+    // Add floating hearts around the nav
+    for (let i = 0; i < 3; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'nav-heart';
+        heart.innerHTML = ['❤', '🧡', '💖', '💗'][Math.floor(Math.random() * 4)];
+        heart.style.cssText = `
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation-delay: ${Math.random() * 2}s;
+        `;
+        bottomNav.appendChild(heart);
+    }
+    
+    // Add click effect
+    bottomNav.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            createBubbleEffect(e.target);
+        }
+    });
+}
+
+function createBubbleEffect(element) {
+    for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+            const bubble = document.createElement('div');
+            bubble.className = 'nav-bubble';
+            bubble.innerHTML = ['🫧', '💭', '🌸'][Math.floor(Math.random() * 3)];
+            
+            const rect = element.getBoundingClientRect();
+            bubble.style.cssText = `
+                left: ${rect.left + rect.width/2}px;
+                top: ${rect.top}px;
+                font-size: ${Math.random() * 10 + 10}px;
+            `;
+            
+            document.body.appendChild(bubble);
+            setTimeout(() => bubble.remove(), 1000);
+        }, i * 100);
+    }
 }
 
 function createBottomNav() {
     if (!document.querySelector('.bottom-nav')) {
         const nav = document.createElement('div');
         nav.className = 'bottom-nav';
-        nav.innerHTML = '<div class="quick-links"></div>';
+        nav.innerHTML = `
+            <div class="quick-links-wrapper">
+                <div class="quick-links"></div>
+                <div class="nav-flower">🌸</div>
+            </div>
+        `;
         document.body.appendChild(nav);
     }
     updateBottomLinks();
@@ -178,10 +324,10 @@ function createBottomNav() {
 
 function updateBottomLinks() {
     const pages = [
-        { url: 'index.html', name: 'Home' },
-        { url: 'socialization.html', name: 'Socialization' },
-        { url: 'culture.html', name: 'Culture' },
-        { url: 'research-methods.html', name: 'Research Methods' }
+        { url: 'index.html', name: 'Home', emoji: '🏠' },
+        { url: 'socialization.html', name: 'Social', emoji: '💬' },
+        { url: 'culture.html', name: 'Culture', emoji: '🎨' },
+        { url: 'research-methods.html', name: 'Research', emoji: '🔍' }
     ];
     
     const currentPage = location.pathname.split('/').pop();
@@ -198,8 +344,12 @@ function updateBottomLinks() {
         linksDiv.appendChild(prevLink);
     }
     
+    // Home link (center)
+    const homeLink = createNavLink(pages[0], 'home');
+    linksDiv.appendChild(homeLink);
+    
     // Next link
-    if (currentIndex < pages.length - 1) {
+    if (currentIndex < pages.length - 1 && currentIndex >= 0) {
         const nextLink = createNavLink(pages[currentIndex + 1], 'next');
         linksDiv.appendChild(nextLink);
     }
@@ -209,7 +359,25 @@ function createNavLink(page, type) {
     const link = document.createElement('a');
     link.href = page.url;
     link.className = `quick-link ${type}`;
-    link.textContent = type === 'prev' ? `← ${page.name}` : `${page.name} →`;
+    
+    if (type === 'home') {
+        link.innerHTML = `
+            <span class="nav-emoji">${page.emoji}</span>
+            <span class="nav-text">${page.name}</span>
+        `;
+    } else {
+        link.innerHTML = `
+            <span class="nav-emoji">${page.emoji}</span>
+            <span class="nav-text">${type === 'prev' ? page.name : page.name}</span>
+            <span class="nav-arrow">${type === 'prev' ? '←' : '→'}</span>
+        `;
+    }
+    
+    // Add hover effect
+    link.addEventListener('mouseenter', () => {
+        createNavSparkle(link);
+    });
+    
     return link;
 }
 
