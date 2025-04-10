@@ -83,36 +83,25 @@ function initGlitterEffects() {
 }
 
 function createGlitter(x, y) {
-    const glitter = document.createElement('div');
-    glitter.className = 'glitter';
+    const colors = ['#ff9ff3', '#ff6b9d', '#feca57', '#fff'];
+    const shapes = ['✦', '✧', '❀', '♥', '♡'];
     
-    // Random properties
-    const size = Math.random() * 8 + 4;
-    const shapes = ['✦', '✧', '❀', '✿', '♡', '★'];
-    const color = `hsl(${Math.random() * 60 + 300}, 100%, ${Math.random() * 30 + 60}%)`;
-    
-    glitter.style.cssText = `
-        left: ${x}px;
-        top: ${y}px;
-        width: ${size}px;
-        height: ${size}px;
-        color: ${color};
-        font-size: ${size}px;
-        animation-duration: ${Math.random() * 2 + 1}s;
-    `;
-    
-    if (Math.random() > 0.5) {
-        glitter.textContent = shapes[Math.floor(Math.random() * shapes.length)];
-    } else {
-        glitter.style.backgroundColor = color;
-        glitter.style.borderRadius = '50%';
+    // Create 2 glitter particles at once
+    for (let i = 0; i < 2; i++) {
+        const glitter = document.createElement('div');
+        glitter.className = 'glitter';
+        glitter.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+        glitter.style.cssText = `
+            left: ${x + (Math.random() * 20 - 10)}px;
+            top: ${y + (Math.random() * 20 - 10)}px;
+            color: ${colors[Math.floor(Math.random() * colors.length)]};
+            font-size: ${Math.random() * 12 + 10}px;
+            animation-duration: ${Math.random() * 2 + 1}s;
+        `;
+        document.body.appendChild(glitter);
+        setTimeout(() => glitter.remove(), 2000);
     }
-    
-    document.body.appendChild(glitter);
-    
-    setTimeout(() => glitter.remove(), 2000);
 }
-
 /* ===== ANSWER TOGGLES ===== */
 function initAnswerToggles() {
     document.querySelectorAll('.show-answer').forEach(button => {
@@ -244,4 +233,16 @@ function setupScrollBehavior() {
             ticking = true;
         }
     }, { passive: true });
+    // Rainbow hover effect for headers
+document.querySelectorAll('h1, h2, h3').forEach(heading => {
+    heading.addEventListener('mouseenter', () => {
+        heading.style.backgroundImage = 'linear-gradient(45deg, #ff9ff3, #ff6b9d, #feca57)';
+        heading.style.webkitBackgroundClip = 'text';
+        heading.style.color = 'transparent';
+    });
+    heading.addEventListener('mouseleave', () => {
+        heading.style.backgroundImage = '';
+        heading.style.color = '';
+    });
+});
 }
