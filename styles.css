@@ -261,6 +261,12 @@ li::before {
     display: inline-block;
     margin-top: 20px;
 }
+/* Link container */
+.more-cases-link {
+    text-align: center;
+    margin: 40px 0 20px;
+    padding: 0 20px;
+}
 /* ===== ANIMATION STYLES ===== */
 @keyframes sparkle {
     0% { opacity: 0.5; transform: scale(0.8); }
@@ -698,6 +704,12 @@ html {
 button {
     -webkit-appearance: none;
     border-radius: 0;
+}
+/* Mobile optimization */
+@media (max-width: 600px) {
+    .more-cases-link {
+        margin: 30px 0 15px;
+    }
 }
 /* ===== SECTION DECORATIONS ===== */
 .section:nth-child(odd)::after {
