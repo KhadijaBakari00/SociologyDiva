@@ -235,7 +235,32 @@ li::before {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(255, 105, 157, 0.4);
 }
+/* Special link styling */
+.see-more {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 20px;
+    background: linear-gradient(45deg, #ff9ff3, #ffb6c1);
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(255, 159, 243, 0.3);
+    transition: all 0.3s ease;
+}
 
+.see-more:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 159, 243, 0.4);
+}
+
+.back-link {
+    color: #e84393;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 20px;
+}
 /* ===== ANIMATION STYLES ===== */
 @keyframes sparkle {
     0% { opacity: 0.5; transform: scale(0.8); }
@@ -608,6 +633,71 @@ html {
     .quick-links {
         padding: 10px 15px;
     }
+}
+/* ===== MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 600px) {
+    /* Case Study Cards */
+    .case-study {
+        padding: 15px;
+        margin: 10px 0;
+    }
+    
+    /* MCQ Questions */
+    .mcq {
+        padding: 12px;
+    }
+    
+    .options p {
+        padding: 8px 5px;
+        font-size: 0.9rem;
+    }
+    
+    /* Header Adjustments */
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 5px;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    /* Section Padding */
+    .section {
+        padding: 18px;
+    }
+    
+    /* Footer Links */
+    .see-more, .back-link {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    /* Hide decorative elements on small screens */
+    .section-flower, .nav-flower {
+        display: none;
+    }
+}
+/* Touch Optimization */
+.touch-target {
+    min-height: 44px; /* Apple recommended tap target size */
+    padding: 12px 20px;
+}
+
+/* Prevent zoom on input focus */
+select, textarea, input, button {
+    font-size: 16px !important;
+}
+
+/* Mobile scrolling improvement */
+html {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Fix iOS button styling */
+button {
+    -webkit-appearance: none;
+    border-radius: 0;
 }
 /* ===== SECTION DECORATIONS ===== */
 .section:nth-child(odd)::after {
