@@ -438,6 +438,16 @@ function setupScrollBehavior() {
     
     // Initial check
     checkScroll();
+
+    // Better touch feedback
+document.querySelectorAll('.touch-target').forEach(button => {
+    button.addEventListener('touchstart', function() {
+        this.style.transform = 'scale(0.98)';
+    });
+    button.addEventListener('touchend', function() {
+        this.style.transform = 'scale(1)';
+    });
+});
     
     // Rainbow hover effect for headers
 document.querySelectorAll('h1, h2, h3').forEach(heading => {
