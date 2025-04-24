@@ -335,9 +335,9 @@ function createBottomNav() {
 
 function updateBottomLinks() {
     const pages = [
-        { url: 'index.html', name: 'Home', emoji: '🏠' },
-        { url: 'socialization.html', name: 'Social', emoji: '💬' },
-        { url: 'culture.html', name: 'Culture', emoji: '🎨' },
+        { url: 'index.html', name: 'Main', emoji: '💬' },
+        { url: 'Family.html', name: 'Family', emoji: '🏠' },
+        { url: 'Deviance.html', name: 'Deviance', emoji: '🎨' },
         { url: 'research-methods.html', name: 'Research', emoji: '🔍' }
     ];
     
