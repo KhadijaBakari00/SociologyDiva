@@ -338,7 +338,7 @@ function updateBottomLinks() {
         { url: 'index.html', name: 'Main', emoji: '💬' },
         { url: 'Family.html', name: 'Family', emoji: '🏠' },
         { url: 'Deviance.html', name: 'Deviance', emoji: '🎨' },
-        { url: 'research-methods.html', name: 'Research', emoji: '🔍' }
+        { url: 'Media.html', name: 'Media', emoji: '🔍' }
     ];
     
     const currentPage = location.pathname.split('/').pop();
