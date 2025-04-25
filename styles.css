@@ -235,37 +235,68 @@ li::before {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(255, 105, 157, 0.4);
 }
-/* Special link styling */
-.see-more {
+/* Link container */
+.past-exams-answers {
+    text-align: center;
+    margin: 40px 0 20px;
+    padding: 0 20px;
+}
+
+/* Special link styling - Pink version */
+.see-papers {
     display: inline-block;
     margin-top: 15px;
     padding: 8px 20px;
-    background: linear-gradient(45deg, #ff9ff3, #ffb6c1);
+    background: linear-gradient(45deg, var(--pink), var(--hotpink)); /* Using your pink variables */
     color: white;
     border-radius: 25px;
     text-decoration: none;
     font-weight: 600;
-    box-shadow: 0 3px 10px rgba(255, 159, 243, 0.3);
+    box-shadow: 0 3px 10px rgba(255, 105, 157, 0.3);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.see-more:hover {
+.see-papers:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 159, 243, 0.4);
+    box-shadow: 0 5px 15px rgba(255, 105, 157, 0.4);
 }
 
-.back-link {
-    color: #e84393;
-    text-decoration: none;
-    font-weight: 600;
+/* Animated arrow */
+.see-papers::after {
+    content: "→";
+    margin-left: 8px;
     display: inline-block;
-    margin-top: 20px;
+    transition: transform 0.3s ease;
 }
-/* Link container */
-.more-cases-link {
-    text-align: center;
-    margin: 40px 0 20px;
-    padding: 0 20px;
+
+.see-papers:hover::after {
+    transform: translateX(3px);
+}
+
+/* Optional sparkle effect */
+.see-papers::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255,255,255,0) 45%,
+        rgba(255,255,255,0.8) 50%,
+        rgba(255,255,255,0) 55%
+    );
+    transform: rotate(30deg);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.see-papers:hover::before {
+    opacity: 1;
+    left: 100%;
 }
 /* ===== ANIMATION STYLES ===== */
 @keyframes sparkle {
