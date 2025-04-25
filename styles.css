@@ -731,3 +731,6 @@ button {
     color: var(--purple);
     opacity: 0.3;
 }
+.more-cases-link, .see-more {
+    display: none !important;
+}
