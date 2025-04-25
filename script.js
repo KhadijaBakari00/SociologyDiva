@@ -335,10 +335,10 @@ function createBottomNav() {
 
 function updateBottomLinks() {
     const pages = [
-        { url: 'index.html', name: 'Main', emoji: '💬' },
-        { url: 'Family.html', name: 'Family', emoji: '🏠' },
+        { url: 'index.html', name: 'Main', emoji: '🏠' },
+        { url: 'Family.html', name: 'Family', emoji: '🫀' },
         { url: 'Deviance.html', name: 'Deviance', emoji: '🎨' },
-        { url: 'Media.html', name: 'Media', emoji: '🔍' }
+        { url: 'Media.html', name: 'Media', emoji: '📱' }
     ];
     
     const currentPage = location.pathname.split('/').pop();
