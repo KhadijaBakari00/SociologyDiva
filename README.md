@@ -1,2 +1,2 @@
 # SociologyDiva
-For the miderms sweetie :)
+For the finals sweetie :)
